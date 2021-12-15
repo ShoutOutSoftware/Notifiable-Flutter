@@ -7,7 +7,7 @@ updating the whole widget tree.
 final _notifier = Notifier();
 
 Notifiable(
-  notifier: _titleChangeNotifier,
+  notifier: _notifier,
   builder: (context) => Text(
     _model.title,
     style: const TextStyle(fontSize: 20),
