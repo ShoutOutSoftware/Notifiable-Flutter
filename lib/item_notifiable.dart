@@ -4,8 +4,10 @@ library value_notifiable;
 import 'package:flutter/widgets.dart';
 
 class ItemNotifier<T> {
-  T? _value;
+  late T _value;
   VoidCallback? _listener;
+
+  ItemNotifier({required T defaultValue}) : _value = defaultValue;
 
   void setListener(VoidCallback listener) {
     _listener = listener;
@@ -15,30 +17,28 @@ class ItemNotifier<T> {
     _listener = null;
   }
 
-  void notify(T? value) {
+  void notify(T value) {
     _value = value;
     _listener?.call();
   }
 }
 
 class ItemNotifiable<T> extends StatefulWidget {
-  final ItemNotifier<T?> notifier;
-  final Widget Function(BuildContext context, T? value) builder;
+  final ItemNotifier<T> notifier;
+  final Widget Function(BuildContext context, T value) builder;
 
   const ItemNotifiable({
     Key? key,
     required this.notifier,
     required this.builder,
-  })  : assert(notifier != null),
-        assert(builder != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ItemNotifiableState<T>();
 }
 
 class _ItemNotifiableState<T> extends State<ItemNotifiable<T>> {
-  late T? value;
+  late T value;
 
   @override
   void initState() {

@@ -13,3 +13,7 @@
 ## 1.0.3
 
 - Updated readme
+
+## 1.0.4
+
+- Fixed issue with optional values in ItemNotifiable
