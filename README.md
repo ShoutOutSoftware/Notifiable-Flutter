@@ -1,4 +1,4 @@
-# Sift
+# Notifiable
 A simple notifiable widget that allows updating specific widgets without
 updating the whole widget tree.
 

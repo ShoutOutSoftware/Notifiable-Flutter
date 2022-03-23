@@ -9,3 +9,7 @@
 ## 1.0.2
 
 - Added item notifiable
+
+## 1.0.3
+
+- Updated readme
