@@ -17,3 +17,7 @@
 ## 1.0.4
 
 - Fixed issue with optional values in ItemNotifiable
+
+## 1.0.5
+
+- Added feature to assign a single ItemNotifier to multiple ItemNotifiable widgets

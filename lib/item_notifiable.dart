@@ -5,21 +5,23 @@ import 'package:flutter/widgets.dart';
 
 class ItemNotifier<T> {
   late T _value;
-  VoidCallback? _listener;
+  final List<VoidCallback> _listeners = [];
 
   ItemNotifier({required T defaultValue}) : _value = defaultValue;
 
-  void setListener(VoidCallback listener) {
-    _listener = listener;
+  void addListener(VoidCallback listener) {
+    _listeners.add(listener);
   }
 
-  void removeListener() {
-    _listener = null;
+  void removeListener(VoidCallback listener) {
+    _listeners.remove(listener);
   }
 
   void notify(T value) {
     _value = value;
-    _listener?.call();
+    for (var listener in _listeners) {
+      listener.call();
+    }
   }
 }
 
@@ -39,28 +41,34 @@ class ItemNotifiable<T> extends StatefulWidget {
 
 class _ItemNotifiableState<T> extends State<ItemNotifiable<T>> {
   late T value;
+  late VoidCallback listener;
 
   @override
   void initState() {
     super.initState();
     value = widget.notifier._value;
-    widget.notifier.setListener(_valueChanged);
+    _addListener();
   }
 
   @override
   void didUpdateWidget(ItemNotifiable<T> oldWidget) {
     if (oldWidget.notifier != widget.notifier) {
-      oldWidget.notifier.removeListener();
+      oldWidget.notifier.removeListener(listener);
       value = widget.notifier._value;
-      widget.notifier.setListener(_valueChanged);
+      _addListener();
     }
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    widget.notifier.removeListener();
+    widget.notifier.removeListener(listener);
     super.dispose();
+  }
+
+  void _addListener() {
+    listener = _valueChanged;
+    widget.notifier.addListener(listener);
   }
 
   void _valueChanged() {
