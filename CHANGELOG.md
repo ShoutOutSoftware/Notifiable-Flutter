@@ -21,3 +21,7 @@
 ## 1.0.5
 
 - Added feature to assign a single ItemNotifier to multiple ItemNotifiable widgets
+
+## 1.0.5
+
+- Added TwoItemNotifiable class that can provide two items to the widget

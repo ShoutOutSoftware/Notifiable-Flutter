@@ -1,6 +1,6 @@
 name: notifiable
 description: A simple widget that allows updating specific widgets instead of the whole widget tree.
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/ShoutOutSoftware/Notifiable-Flutter
 
 environment:

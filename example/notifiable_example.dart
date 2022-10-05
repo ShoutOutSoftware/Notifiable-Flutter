@@ -15,17 +15,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: NotifiableExample(),
+      home: ItemNotifiableExample(),
     );
   }
 }
 
-class NotifiableExample extends StatelessWidget {
+class ItemNotifiableExample extends StatelessWidget {
   final _model = TitleAndSubtitle();
   final _titleChangeNotifier = Notifier();
   final _subtitleChangeNotifier = Notifier();
 
-  NotifiableExample({Key? key}) : super(key: key);
+  ItemNotifiableExample({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
