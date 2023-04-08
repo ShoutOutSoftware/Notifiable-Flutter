@@ -25,3 +25,7 @@
 ## 1.0.6
 
 - Added TwoItemNotifiable class that can provide two items to the widget
+
+## 1.0.7
+
+- Added feature to set multiple listeners to Notifiable

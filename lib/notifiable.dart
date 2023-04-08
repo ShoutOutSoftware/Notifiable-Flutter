@@ -4,18 +4,20 @@ library notifiable;
 import 'package:flutter/widgets.dart';
 
 class Notifier {
-  VoidCallback? _listener;
+  final List<VoidCallback> _listeners = [];
 
-  void setListener(VoidCallback listener) {
-    _listener = listener;
+  void addListener(VoidCallback listener) {
+    _listeners.add(listener);
   }
 
-  void removeListener() {
-    _listener = null;
+  void removeListener(VoidCallback listener) {
+    _listeners.remove(listener);
   }
 
   void notify() {
-    _listener?.call();
+    for (var listener in _listeners) {
+      listener.call();
+    }
   }
 }
 
@@ -36,28 +38,35 @@ class Notifiable extends StatefulWidget {
 }
 
 class _NotifiableState extends State<Notifiable> {
+  late VoidCallback listener;
+
   @override
   void initState() {
     super.initState();
-    widget.notifier.setListener(_updateState);
+    _addListener();
   }
 
   @override
   void didUpdateWidget(Notifiable oldWidget) {
     if (oldWidget.notifier != widget.notifier) {
-      oldWidget.notifier.removeListener();
-      widget.notifier.setListener(_updateState);
+      oldWidget.notifier.removeListener(listener);
+      _addListener();
     }
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    widget.notifier.removeListener();
+    widget.notifier.removeListener(listener);
     super.dispose();
   }
 
-  void _updateState() {
+  void _addListener() {
+    listener = _valueChanged;
+    widget.notifier.addListener(listener);
+  }
+
+  void _valueChanged() {
     setState(() {});
   }
 
