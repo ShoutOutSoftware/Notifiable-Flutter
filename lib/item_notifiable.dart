@@ -23,6 +23,10 @@ class ItemNotifier<T> {
       listener.call();
     }
   }
+
+  void dispose() {
+    _listeners.clear();
+  }
 }
 
 class ItemNotifiable<T> extends StatefulWidget {

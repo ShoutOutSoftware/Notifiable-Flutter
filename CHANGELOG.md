@@ -29,3 +29,11 @@
 ## 1.0.7
 
 - Added feature to set multiple listeners to Notifiable
+
+## 1.0.8
+
+- Added support for flutter 4.0.0
+
+## 1.0.9
+
+- Added dispose function to the notifiers

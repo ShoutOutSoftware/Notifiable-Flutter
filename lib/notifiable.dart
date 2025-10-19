@@ -19,6 +19,10 @@ class Notifier {
       listener.call();
     }
   }
+
+  void dispose() {
+    _listeners.clear();
+  }
 }
 
 class Notifiable extends StatefulWidget {

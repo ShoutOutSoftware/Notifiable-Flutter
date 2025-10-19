@@ -27,6 +27,10 @@ class TwoItemNotifier<T, V> {
       listener.call();
     }
   }
+
+  void dispose() {
+    _listeners.clear();
+  }
 }
 
 class TwoItemNotifiable<T, V> extends StatefulWidget {
